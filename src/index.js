@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -47,20 +48,23 @@ const pizzaData = [
 ];
 
 // Pizza component
-function Pizza() {
+function Pizza(props) {
   return (
-    <div>
-      <img src="pizzas/prosciutto.jpg" alt="pizza prosciutto" />
-      <h2>Pizza Prosciutto</h2>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-    </div>
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
+      </div>
+    </li>
   );
 }
 
 // Header component
 function Header() {
   return (
-    <header>
+    <header className="header">
       <h1>Fast React Pizza Co.</h1>
     </header>
   );
@@ -69,12 +73,14 @@ function Header() {
 // Menu component
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h2>Our menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-    </div>
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+    </main>
   );
 }
 
@@ -85,13 +91,13 @@ function Footer() {
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
 
-  return <footer>we're currently open</footer>;
+  return <footer className="footer">we're currently open</footer>;
 }
 
 // Create App component
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
