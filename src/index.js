@@ -57,13 +57,44 @@ function Pizza() {
   );
 }
 
+// Header component
+function Header() {
+  return (
+    <header>
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  );
+}
+
+// Menu component
+function Menu() {
+  return (
+    <div>
+      <h2>Our menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>
+  );
+}
+
+// Component footer
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+
+  return <footer>we're currently open</footer>;
+}
+
 // Create App component
 function App() {
   return (
     <div>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
